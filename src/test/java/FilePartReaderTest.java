@@ -18,7 +18,7 @@ class FilePartReaderTest {
     @Test
     public void testIsFilePresentThrowIOException() {
         FilePartReader reader = new FilePartReader();
-        reader.setup("tests/non_exist.txt", 1, 10);
+        reader.setup("src/test/resources/non_exist.txt", 1, 10);
         assertThrows(IOException.class, reader::read);
     }
 
@@ -27,7 +27,7 @@ class FilePartReaderTest {
         String correct = "Hello, this is a test file.\nAnd this is the second line.\n";
 
         FilePartReader reader = new FilePartReader();
-        reader.setup("tests/test_data.txt", 1, 5);
+        reader.setup("src/test/resources/test_data.txt", 1, 5);
         String actual = null;
         try {
             actual = reader.read();
@@ -42,7 +42,7 @@ class FilePartReaderTest {
         String correct = "Hello, this is a test file.\n";
 
         FilePartReader reader = new FilePartReader();
-        reader.setup("tests/test_data.txt", 1, 1);
+        reader.setup("src/test/resources/test_data.txt", 1, 1);
 
         assertEquals(correct, reader.readLines());
     }
@@ -52,7 +52,7 @@ class FilePartReaderTest {
         String correct = "And this is the second line.\n";
 
         FilePartReader reader = new FilePartReader();
-        reader.setup("tests/test_data.txt", 2, 2);
+        reader.setup("src/test/resources/test_data.txt", 2, 2);
 
         assertEquals(correct, reader.readLines());
     }
@@ -64,7 +64,7 @@ class FilePartReaderTest {
                 "And this is the seventh line.\n";
 
         FilePartReader reader = new FilePartReader();
-        reader.setup("tests/longer_test_data.txt", 5, 7);
+        reader.setup("src/test/resources/longer_test_data.txt", 5, 7);
 
         assertEquals(correct, reader.readLines());
     }
@@ -72,7 +72,7 @@ class FilePartReaderTest {
     @Test
     public void testIsReadLinesHandleWrongFilePathThrowIOException() {
         FilePartReader reader = new FilePartReader();
-        reader.setup("tests/non_exist.txt", 1, 10);
+        reader.setup("src/test/resources/non_exist.txt", 1, 10);
         assertEquals("\n", reader.readLines());
     }
 }
