@@ -3,7 +3,7 @@ public class Main {
         FilePartReader inputText = new FilePartReader();
         inputText.setup("src/main/resources/sample.txt", 1, 100);
 
-        String substring = "s";
+        String substring = "tor";
 
         FileWordAnalyzer analyzer = new FileWordAnalyzer(inputText);
         System.out.println("Alphabetically ordered words");
