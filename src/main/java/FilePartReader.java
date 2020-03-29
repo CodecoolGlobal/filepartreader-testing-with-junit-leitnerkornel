@@ -20,30 +20,29 @@ public class FilePartReader {
         this.toLine = toLine;
     }
 
-    public String read() {
+    public String read() throws IOException {
         File file = new File(filePath);
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        if (!file.exists()) throw new IOException();
+
+        BufferedReader reader = new BufferedReader(new FileReader(file));
         StringBuilder result = new StringBuilder();
-        try {
-            String line;
-            if (reader != null) {
-                while ((line = reader.readLine()) != null) {
-                    result.append(line).append("\n");
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            result.append(line).append("\n");
         }
+
         return result.toString();
     }
 
     public String readLines() {
-        String inputText = read();
+        String inputText;
+        try {
+            inputText = read();
+        } catch (IOException e) {
+            inputText = "";
+            System.out.println("\nThe given file path was incorrect!");
+        }
         String[] lines = inputText.split("[\\r\\n]+");
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < lines.length; i++) {
