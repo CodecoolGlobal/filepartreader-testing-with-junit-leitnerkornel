@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="filepartreader" options="-Xlint:all" />
+      <module name="filepartreader" options="" />
     </option>
   </component>
 </project>
